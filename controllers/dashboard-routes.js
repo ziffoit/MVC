@@ -15,7 +15,7 @@ router.get("/", withAuth, (req, res) => {
             allPosts
         })
     })
-        .catch((err) => res.redirect("login"));
+    .catch((err) => res.redirect("login"));
 });
 
 router.get("/newPost", withAuth, (req, res) => {
@@ -23,3 +23,17 @@ router.get("/newPost", withAuth, (req, res) => {
         layout: "dashboard",
     })
 })
+
+router.get('/edit/:id', withAuth, (req, res) => {
+    Post.findOne(req.params.id)
+    .then(data => {
+        const onePost = data.get({plain: true})
+        res.render('edit-post', {
+            layout: 'dashboard',
+            onePost
+        })
+    })
+    .catch((err) => res.redirect("login"))
+})
+
+module.exports = router
