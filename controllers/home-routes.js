@@ -19,24 +19,6 @@ router.get("/", (req, res) => {
         .catch((err) => res.redirect("login"));
 });
 
-router.get("/:id", (req, res) => {
-    Post.findOne({
-        include: [{
-            model: User,
-            attributes: ['name'],
-        }],
-        order: [['createdAt', 'DESC']]
-    })
-        .then((data) => {
-            const onePost = data.get({ plain: true });
-            res.render("single-post", {
-                layout: "main",
-                onePost,
-            });
-        })
-        .catch((err) => res.redirect("login"));
-});
-
 router.get("/signup", (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/')

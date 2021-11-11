@@ -20,7 +20,7 @@ router.get("/", withAuth, (req, res) => {
 
 router.get("/newPost", withAuth, (req, res) => {
     res.render("new-post", {
-        layout: "dashboard",
+        layout: "dashboard"
     })
 })
 

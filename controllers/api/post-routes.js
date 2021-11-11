@@ -15,7 +15,7 @@ router.get("/", withAuth, (req, res) => {
         .catch((err) => res.json(err));
 });
 
-router.get("/:id", withAuth, (req, res) => {
+router.get("/:id", (req, res) => {
 
     const requestedId = req.params.id;
     Post.findOne({
